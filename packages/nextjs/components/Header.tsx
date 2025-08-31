@@ -3,8 +3,16 @@
 import React, { useCallback, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Logo } from "./Logo";
-import { Bars3Icon, BugAntIcon, HomeIcon } from "@heroicons/react/24/outline";
+import { TakaLogo } from "./taka/TakaLogo";
+import { 
+  Bars3Icon, 
+  HomeIcon, 
+  MapPinIcon, 
+  CurrencyDollarIcon, 
+  ChartBarIcon, 
+  UserGroupIcon,
+  CogIcon 
+} from "@heroicons/react/24/outline";
 import {
   DappConsoleButton,
   FaucetButton,
@@ -22,14 +30,29 @@ type HeaderMenuLink = {
 
 export const menuLinks: HeaderMenuLink[] = [
   {
-    label: "Home",
+    label: "Dashboard",
     href: "/",
     icon: <HomeIcon className="h-4 w-4" />,
   },
   {
-    label: "Debug Contracts",
-    href: "/debug",
-    icon: <BugAntIcon className="h-4 w-4" />,
+    label: "Collection Stations",
+    href: "/stations",
+    icon: <MapPinIcon className="h-4 w-4" />,
+  },
+  {
+    label: "Marketplace",
+    href: "/marketplace",
+    icon: <CurrencyDollarIcon className="h-4 w-4" />,
+  },
+  {
+    label: "Analytics",
+    href: "/analytics",
+    icon: <ChartBarIcon className="h-4 w-4" />,
+  },
+  {
+    label: "Community",
+    href: "/community",
+    icon: <UserGroupIcon className="h-4 w-4" />,
   },
 ];
 
@@ -46,12 +69,14 @@ export const HeaderMenuLinks = () => {
               href={href}
               passHref
               className={cn(
-                "relative flex items-center justify-between px-4 py-2 text-sm transition-colors duration-200",
-                isActive ? "bg-base-100 primary-content" : "text-slate-400",
+                "relative flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium transition-all duration-300",
+                isActive 
+                  ? "glass-strong text-white shadow-glow-emerald" 
+                  : "text-white/70 hover:text-white hover:glass-subtle",
               )}
             >
               {icon}
-              {label}
+              <span className="hidden sm:inline">{label}</span>
             </Link>
           </li>
         );
@@ -61,7 +86,7 @@ export const HeaderMenuLinks = () => {
 };
 
 /**
- * Site header
+ * Taka Platform Header with Glassmorphism
  */
 export const Header = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -72,48 +97,56 @@ export const Header = () => {
   );
 
   return (
-    <header className="sticky lg:static top-0 navbar bg-base-900 min-h-0 flex-shrink-0 justify-between z-20 px-0 sm:px-2 border-b border-[#252442]">
-      <div className="navbar-start w-auto lg:w-1/2">
-        <div className="lg:hidden dropdown" ref={burgerMenuRef}>
-          <label
-            tabIndex={0}
-            className={`ml-1 btn btn-ghost ${isDrawerOpen ? "hover:bg-secondary" : "hover:bg-transparent"}`}
-            onClick={() => {
-              setIsDrawerOpen(prevIsOpenState => !prevIsOpenState);
-            }}
-          >
-            <Bars3Icon className="h-1/2" />
-          </label>
-          {isDrawerOpen && (
-            <ul
-              tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-              onClick={() => {
-                setIsDrawerOpen(false);
-              }}
-            >
+    <header className="sticky top-0 z-50 glass border-b border-white/5">
+      <div className="container mx-auto px-6">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo and Brand */}
+          <div className="flex items-center space-x-6">
+            <div className="lg:hidden" ref={burgerMenuRef}>
+              <button
+                className="glass-subtle p-3 rounded-2xl text-white hover:glass transition-all duration-300 hover:scale-105"
+                onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+              >
+                <Bars3Icon className="h-6 w-6" />
+              </button>
+              
+              {isDrawerOpen && (
+                <div className="absolute top-20 left-6 right-6 glass-strong rounded-2xl p-6 border border-white/10 shadow-glass-strong">
+                  <ul className="space-y-3">
+                    <HeaderMenuLinks />
+                  </ul>
+                </div>
+              )}
+            </div>
+            
+            <Link href="/" className="flex items-center space-x-4 group">
+              <TakaLogo size={48} className="group-hover:scale-110 transition-transform duration-300" />
+              <div className="hidden sm:block">
+                <div className="text-2xl font-bold text-white">Taka</div>
+                <div className="text-sm text-slate-300 font-medium">Recycle • Earn • Impact</div>
+              </div>
+            </Link>
+          </div>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:block">
+            <ul className="flex items-center space-x-3">
               <HeaderMenuLinks />
             </ul>
-          )}
+          </nav>
+
+          {/* Wallet Connection and Actions */}
+          <div className="flex items-center space-x-4">
+            <div className="hidden sm:flex items-center space-x-3">
+              <FaucetButton />
+              <SuperchainFaucetButton />
+              <DappConsoleButton />
+            </div>
+            <div className="glass-subtle rounded-2xl p-1">
+              <RainbowKitCustomConnectButton />
+            </div>
+          </div>
         </div>
-        <Link href="/" passHref className="hidden lg:flex items-center gap-2 ml-4 mr-6 shrink-0">
-          <div className="flex relative">
-            <Logo size={24} />
-          </div>
-          <div className="flex flex-col">
-            <span className="font-bold leading-tight">Scaffold-Lisk</span>
-            <span className="text-xs">Ethereum dev stack</span>
-          </div>
-        </Link>
-        <ul className="hidden lg:flex lg:flex-nowrap menu menu-horizontal px-1 gap-2">
-          <HeaderMenuLinks />
-        </ul>
-      </div>
-      <div className="navbar-end flex-grow mr-4">
-        <RainbowKitCustomConnectButton />
-        <FaucetButton />
-        <SuperchainFaucetButton />
-        <DappConsoleButton />
       </div>
     </header>
   );

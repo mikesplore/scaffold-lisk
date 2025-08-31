@@ -2,20 +2,20 @@ const path = require("path");
 
 const buildNextEslintCommand = (filenames) =>
   `yarn next:lint --fix --file ${filenames
-    .map((f) => path.relative(path.join("packages", "nextjs"), f))
+    .map((f) => path.relative("taka-frontend", f))
     .join(" --file ")}`;
 
 const checkTypesNextCommand = () => "yarn next:check-types";
 
 const buildHardhatEslintCommand = (filenames) =>
-  `yarn hardhat:lint-staged --fix ${filenames
-    .map((f) => path.relative(path.join("packages", "hardhat"), f))
+  `yarn hardhat:lint-staged ${filenames
+    .map((f) => path.relative("taka-backend", f))
     .join(" ")}`;
 
 module.exports = {
-  "packages/nextjs/**/*.{ts,tsx}": [
+  "taka-frontend/**/*.{ts,tsx}": [
     buildNextEslintCommand,
-    checkTypesNextCommand,
+    "prettier --write",
   ],
-  "packages/hardhat/**/*.{ts,tsx}": [buildHardhatEslintCommand],
+  "taka-backend/**/*.{ts,tsx}": [buildHardhatEslintCommand],
 };
