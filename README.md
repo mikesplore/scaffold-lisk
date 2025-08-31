@@ -1,5 +1,5 @@
 <div align="left">
-  <a href="https://lisk.com"><img alt="Lisk" src="./packages/nextjs/public/readme-banner.png" width="100%"></a>
+  <a href="https://lisk.com"><img alt="Lisk" src="./taka-frontend/public/readme-banner.png" width="100%"></a>
 </div>
 
 <br />
@@ -17,7 +17,7 @@ Scaffold-Lisk is a fork of Scaffold-OP with minimal differences, providing addit
 - 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
 
 <div align="center" style="margin-top: 24px;">
-  <img alt="App demo" src="./packages/nextjs/public/scaffold-lisk-landing.png" width="100%">
+  <img alt="App demo" src="./taka-frontend/public/scaffold-lisk-landing.png" width="100%">
 </div>
 
 ## Requirements
@@ -54,7 +54,7 @@ This command starts a local Ethereum network using Hardhat. The network runs on 
 yarn deploy
 ```
 
-This command deploys a test smart contract to the local network. The contract is located in `packages/hardhat/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/hardhat/deploy` to deploy the contract to the network. You can also customize the deploy script.
+This command deploys a test smart contract to the local network. The contract is located in `taka-backend/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `taka-backend/deploy` to deploy the contract to the network. You can also customize the deploy script.
 
 4. On the same terminal, start your NextJS app:
 
@@ -62,13 +62,13 @@ This command deploys a test smart contract to the local network. The contract is
 yarn start
 ```
 
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
+Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `taka-frontend/scaffold.config.ts`.
 
 Run smart contract test with `yarn hardhat:test`
 
-- Edit your smart contract `YourContract.sol` in `packages/hardhat/contracts`
-- Edit your frontend in `packages/nextjs/pages`
-- Edit your deployment scripts in `packages/hardhat/deploy`
+- Edit your smart contract `YourContract.sol` in `taka-backend/contracts`
+- Edit your frontend in `taka-frontend/app`
+- Edit your deployment scripts in `taka-backend/deploy`
 
 ## Deploy Contracts to Superchain Testnet(s)
 
@@ -76,10 +76,10 @@ To deploy contracts to a remote testnet (e.g. Optimism Sepolia), follow the step
 
 1. Get Superchain Sepolia ETH from the [Superchain Faucet](https://app.optimism.io/faucet)
 
-2. Inside the `packages/hardhat` directory, copy `.env.example` to `.env`.
+2. Inside the `taka-backend` directory, copy `.env.example` to `.env`.
 
-   ```bash
-   cd packages/hardhat && cp .env.example .env
+   ```
+   cd taka-backend && cp .env.example .env
    ```
 
 3. Edit your `.env` to specify the environment variables. Only specifying the `DEPLOYER_PRIVATE_KEY` is necessary here. The contract will be deployed from the address associated with this private key, so make sure it has enough Sepolia ETH.
@@ -94,7 +94,7 @@ To deploy contracts to a remote testnet (e.g. Optimism Sepolia), follow the step
    yarn deploy --network-options
    ```
 
-   Use spacebar to make your selection(s). This command deploys all smart contracts in `packages/hardhat/contracts` to the selected network(s). Alternatively, you can try
+   Use spacebar to make your selection(s). This command deploys all smart contracts in `taka-backend/contracts` to the selected network(s). Alternatively, you can try
 
    ```bash
    yarn deploy --network networkName

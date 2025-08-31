@@ -1,5 +1,24 @@
 # dependencies
 node_modules
+.next
+
+# build artifacts and cache
+.next/
+*/.next/
+dist/
+build/
+*/build/
+*/dist/
+.cache/
+*/.cache/
+*.tsbuildinfo
+
+# hardhat artifacts
+artifacts/
+cache/
+deployments/*/solcInputs/
+**/artifacts/
+**/cache/
 
 # yarn
 .yarn/*

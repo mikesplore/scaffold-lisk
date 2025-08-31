@@ -4,8 +4,8 @@
   "private": true,
   "workspaces": {
     "packages": [
-      "packages/hardhat",
-      "packages/nextjs"
+      "taka-backend",
+      "taka-frontend"
     ]
   },
   "scripts": {
@@ -40,6 +40,16 @@
     "lint-staged": "^13.0.3"
   },
   "dependencies": {
+    "next-themes": "^0.4.6",
+    "react-hot-toast": "^2.6.0",
     "tailwind-merge": "^2.4.0"
+  },
+  "lint-staged": {
+    "taka-frontend/**/*.{ts,tsx,js,jsx}": [
+      "prettier --write"
+    ],
+    "taka-backend/**/*.{ts,js}": [
+      "prettier --write"
+    ]
   }
 }
