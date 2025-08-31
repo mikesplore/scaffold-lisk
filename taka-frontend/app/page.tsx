@@ -16,10 +16,6 @@ import { HeroSection } from "~~/components/taka/HeroSection";
 import { DashboardCard } from "~~/components/taka/DashboardCard";
 import { ActionButton } from "~~/components/taka/ActionButton";
 import { ProgressBar } from "~~/components/taka/ProgressBar";
-// import { WasteRecordForm } from "~~/components/taka/WasteRecordForm";
-// import { TransactionHistory } from "~~/components/taka/TransactionHistory";
-// import { QuickRecordButton } from "~~/components/taka/QuickRecordButton";
-// import { TokenSummary } from "~~/components/taka/TokenSummary";
 import { Address } from "~~/components/scaffold-eth";
 
 // Custom Recycle Icon Component
@@ -62,7 +58,7 @@ const Dashboard: NextPage = () => {
     <div className="min-h-screen">
       {/* Hero Section - No card, just content */}
       <HeroSection 
-        title="Your Eco Progress"
+        title="Your Eco Progresses"
         subtitle="Track • Earn • Help the Planet"
         description="Transform waste into wealth through blockchain-powered recycling rewards. Every piece of trash you collect makes a difference for our planet's future."
       />
@@ -82,7 +78,7 @@ const Dashboard: NextPage = () => {
       )}
 
       {/* Dashboard Overview Section */}
-      <section className="py-16 section-reveal">
+      <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">Dashboard Overview</h2>
@@ -123,7 +119,7 @@ const Dashboard: NextPage = () => {
             />
           </div>
           
-          {/* Additional Statistics Row */}
+          {/* Additional Statistics Row - Always Visible */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto mt-8">
             <DashboardCard
               title="Water Impact"
@@ -135,7 +131,6 @@ const Dashboard: NextPage = () => {
                 </svg>
               }
               trend={{ value: 18.2, isPositive: true }}
-              variant="subtle"
             />
             
             <DashboardCard
@@ -148,7 +143,6 @@ const Dashboard: NextPage = () => {
                 </svg>
               }
               trend={{ value: 22.5, isPositive: true }}
-              variant="subtle"
             />
             
             <DashboardCard
@@ -161,7 +155,6 @@ const Dashboard: NextPage = () => {
                 </svg>
               }
               trend={{ value: 14.3, isPositive: true }}
-              variant="subtle"
             />
             
             <DashboardCard
@@ -174,14 +167,13 @@ const Dashboard: NextPage = () => {
                 </svg>
               }
               trend={{ value: 9.8, isPositive: true }}
-              variant="subtle"
             />
           </div>
         </div>
       </section>
 
       {/* Goals & Progress Section */}
-      <section className="py-16 section-reveal">
+      <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
@@ -223,7 +215,7 @@ const Dashboard: NextPage = () => {
       </section>
 
       {/* Quick Stats Section */}
-      <section className="py-16 section-reveal">
+      <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
@@ -282,7 +274,7 @@ const Dashboard: NextPage = () => {
       </section>
 
       {/* Enhanced Dashboard Section */}
-      <section className="py-16 section-reveal">
+      <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
@@ -293,19 +285,52 @@ const Dashboard: NextPage = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Token Summary */}
               <div className="lg:col-span-1">
-                {/* <TokenSummary /> */}
                 <div className="glass-gradient p-8 rounded-2xl border border-white/20 shadow-vibrant backdrop-blur-md">
-                  <h3 className="text-xl font-bold text-white mb-6">Token Summary Placeholder</h3>
-                  <p className="text-white/70">Component temporarily disabled</p>
+                  <h3 className="text-xl font-bold text-white mb-6">Token Summary</h3>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center">
+                      <span className="text-white/70">TAKA Balance</span>
+                      <span className="text-2xl font-bold text-[var(--primary-start)]">{mockData.takaBalance}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-white/70">USD Value</span>
+                      <span className="text-lg font-medium text-white">$142.35</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-white/70">Today's Earnings</span>
+                      <span className="text-lg font-medium text-[var(--primary-start)]">+45 TAKA</span>
+                    </div>
+                  </div>
                 </div>
               </div>
               
               {/* Transaction History */}
               <div className="lg:col-span-2">
-                {/* <TransactionHistory /> */}
                 <div className="glass-gradient p-8 rounded-2xl border border-white/20 shadow-vibrant backdrop-blur-md">
-                  <h3 className="text-xl font-bold text-white mb-6">Transaction History Placeholder</h3>
-                  <p className="text-white/70">Component temporarily disabled</p>
+                  <h3 className="text-xl font-bold text-white mb-6">Recent Transactions</h3>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center p-3 bg-white/10 rounded-lg">
+                      <div>
+                        <div className="text-white font-medium">Plastic Collection</div>
+                        <div className="text-white/60 text-sm">Yesterday • 5.2kg</div>
+                      </div>
+                      <div className="text-[var(--primary-start)] font-bold">+25 TAKA</div>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-white/10 rounded-lg">
+                      <div>
+                        <div className="text-white font-medium">Metal Cans</div>
+                        <div className="text-white/60 text-sm">2 days ago • 3.8kg</div>
+                      </div>
+                      <div className="text-[var(--primary-start)] font-bold">+40 TAKA</div>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-white/10 rounded-lg">
+                      <div>
+                        <div className="text-white font-medium">Coffee Voucher</div>
+                        <div className="text-white/60 text-sm">3 days ago</div>
+                      </div>
+                      <div className="text-red-400 font-bold">-50 TAKA</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -314,7 +339,7 @@ const Dashboard: NextPage = () => {
       </section>
 
       {/* Recent Activity and Achievements */}
-      <section className="py-16 section-reveal">
+      <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -444,7 +469,7 @@ const Dashboard: NextPage = () => {
       </section>
 
       {/* Leaderboard and Achievements Section */}
-      <section className="py-16 section-reveal">
+      <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -556,7 +581,7 @@ const Dashboard: NextPage = () => {
       </section>
 
       {/* Environmental Impact Section */}
-      <section className="py-16 section-reveal">
+      <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
@@ -687,7 +712,7 @@ const Dashboard: NextPage = () => {
       </section>
 
       {/* Call-to-Actions Section */}
-      <section className="py-16 section-reveal">
+      <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
@@ -753,7 +778,7 @@ const Dashboard: NextPage = () => {
                 <div className="text-slate-500 text-sm mt-2">This year</div>
               </div>
               <div className="text-center">
-                <div className="text-5xl lg:text-6xl font-bold text-green-400 mb-4">₦45.7M</div>
+                <div className="text-5xl lg:text-6xl font-bold text-green-400 mb-4">$45.7M</div>
                 <div className="text-slate-300 text-lg">Tokens Distributed</div>
                 <div className="text-slate-500 text-sm mt-2">To date</div>
               </div>
@@ -761,7 +786,7 @@ const Dashboard: NextPage = () => {
 
             <div className="mt-12">
               <button className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 text-white font-medium rounded-full hover:from-green-600 hover:to-green-700 transition-all duration-300 group">
-                Join the Community
+                Join the Community bluddy
                 <ArrowRightIcon className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
@@ -769,16 +794,6 @@ const Dashboard: NextPage = () => {
         </div>
       </section>
     </div>
-
-    {/* Waste Record Form Modal */}
-    {/* <WasteRecordForm 
-      isOpen={isWasteFormOpen}
-      onClose={() => setIsWasteFormOpen(false)}
-      onSubmit={handleWasteSubmit}
-    /> */}
-
-    {/* Quick Record Button */}
-    {/* <QuickRecordButton onClick={() => setIsWasteFormOpen(true)} /> */}
     </>
   );
 };

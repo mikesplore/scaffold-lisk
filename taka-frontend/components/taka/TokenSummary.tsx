@@ -44,7 +44,7 @@ export const TokenSummary: React.FC<TokenSummaryProps> = ({
         </div>
         <div className="text-lg text-white/80 mb-1">TAKA Tokens</div>
         <div className="text-sm text-[var(--primary-start)] font-medium">
-          ≈ ₦{redeemableValue.toFixed(2)}
+          ≈ ${redeemableValue.toFixed(2)}
         </div>
       </div>
 
@@ -79,7 +79,7 @@ export const TokenSummary: React.FC<TokenSummaryProps> = ({
       {/* Token Rate Info */}
       <div className="mt-6 p-4 bg-white/5 rounded-xl border border-white/20 backdrop-blur-sm">
         <div className="text-xs text-white/70 text-center">
-          Current Rate: 1 TAKA = ₦0.01 | Updated 2 hours ago
+          Current Rate: 1 TAKA = $0.01 | Updated 2 hours ago
         </div>
       </div>
     </div>

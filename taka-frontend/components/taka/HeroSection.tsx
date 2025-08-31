@@ -15,12 +15,25 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 }) => {
   return (
     <section className="relative py-20 lg:py-32 overflow-hidden">
+      {/* Hero Background Image with Blur Effect */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-black/60 z-10"></div>
+        <div 
+          className="absolute inset-0 bg-cover bg-center z-0"
+          style={{
+            backgroundImage: "url('/assets/heroImage.jpg')",
+            filter: "blur(8px)",
+            transform: "scale(1.1)"
+          }}
+        ></div>
+      </div>
+
       {/* Enhanced background elements with new theme */}
-      <div className="absolute top-0 left-1/4 w-72 h-72 bg-[var(--primary-start)]/20 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[var(--primary-mid)]/15 rounded-full blur-3xl"></div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-radial from-[var(--primary-end)]/10 to-transparent rounded-full blur-3xl"></div>
+      <div className="absolute top-0 left-1/4 w-72 h-72 bg-[var(--primary-start)]/20 rounded-full blur-3xl animate-pulse z-20"></div>
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[var(--primary-mid)]/15 rounded-full blur-3xl z-20"></div>
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-radial from-[var(--primary-end)]/20 to-transparent rounded-full blur-3xl z-20"></div>
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative z-30">
         <div className="max-w-4xl mx-auto text-center">
           {/* Enhanced eco icon with new theme */}
           <div className="mb-8 flex justify-center">

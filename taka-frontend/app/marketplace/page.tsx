@@ -148,7 +148,7 @@ const MarketplacePage: NextPage = () => {
           
           <DashboardCard
             title="Total Redeemed"
-            value="₦12,450"
+            value="$12,450"
             subtitle="This month"
             icon={<ShoppingBagIcon className="h-8 w-8 text-taka-accent-400" />}
             glowColor="amber"
@@ -207,7 +207,7 @@ const MarketplacePage: NextPage = () => {
                 <div className="flex justify-between items-center">
                   <span className="text-white/70 text-sm">Exchange Rate:</span>
                   <span className="text-taka-primary-400 font-medium">
-                    {option.rate} TAKA = ₦1
+                    {option.rate} TAKA = $1
                   </span>
                 </div>
                 
@@ -231,7 +231,7 @@ const MarketplacePage: NextPage = () => {
                 <div className="text-center">
                   <span className="text-white/70 text-sm">You can receive up to:</span>
                   <div className="text-xl font-bold text-taka-accent-400">
-                    ₦{calculateReceiveAmount(userBalance, option.rate)}
+                    ${calculateReceiveAmount(userBalance, option.rate)}
                   </div>
                 </div>
               </div>
@@ -256,7 +256,7 @@ const MarketplacePage: NextPage = () => {
               <div className="text-white/70">Annual Returns</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-taka-secondary-400 mb-2">₦2.4M</div>
+              <div className="text-3xl font-bold text-taka-secondary-400 mb-2">$2.4M</div>
               <div className="text-white/70">Total Invested</div>
             </div>
             <div className="text-center">
@@ -310,7 +310,7 @@ const MarketplacePage: NextPage = () => {
                     <div className="flex justify-between items-center mb-2">
                       <span className="text-white/70">You will receive:</span>
                       <span className="text-xl font-bold text-taka-accent-400">
-                        ₦{calculateReceiveAmount(redeemAmount, selectedOption.rate)}
+                        ${calculateReceiveAmount(redeemAmount, selectedOption.rate)}
                       </span>
                     </div>
                     <div className="flex justify-between items-center text-sm">

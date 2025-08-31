@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { CopyToClipboard } from "react-copy-to-clipboard";
+import CopyToClipboard from "react-copy-to-clipboard";
 import { Address as AddressType, getAddress, isAddress } from "viem";
 import { hardhat } from "viem/chains";
 import { useEnsAvatar, useEnsName } from "wagmi";
@@ -95,14 +95,14 @@ export const Address = ({ address, disableAddressLink, format, size = "base" }: 
         />
       </div>
       {disableAddressLink ? (
-        <span className={`ml-1.5 text-${size} font-normal`}>{displayAddress}</span>
+        <span className={`ml-1.5 text-${size} font-medium text-white`}>{displayAddress}</span>
       ) : targetNetwork.id === hardhat.id ? (
-        <span className={`ml-1.5 text-${size} font-normal`}>
-          <Link href={blockExplorerAddressLink}>{displayAddress}</Link>
+        <span className={`ml-1.5 text-${size} font-medium text-white`}>
+          <Link href={blockExplorerAddressLink} className="hover:text-emerald-300 transition-colors duration-300">{displayAddress}</Link>
         </span>
       ) : (
         <a
-          className={`ml-1.5 text-${size} font-normal`}
+          className={`ml-1.5 text-${size} font-medium text-white hover:text-emerald-300 transition-colors duration-300`}
           target="_blank"
           href={blockExplorerAddressLink}
           rel="noopener noreferrer"
@@ -112,7 +112,7 @@ export const Address = ({ address, disableAddressLink, format, size = "base" }: 
       )}
       {addressCopied ? (
         <CheckCircleIcon
-          className="ml-1.5 text-xl font-normal text-sky-600 h-5 w-5 cursor-pointer"
+          className="ml-1.5 text-xl font-normal text-emerald-400 h-5 w-5 cursor-pointer"
           aria-hidden="true"
         />
       ) : (
@@ -126,7 +126,7 @@ export const Address = ({ address, disableAddressLink, format, size = "base" }: 
           }}
         >
           <DocumentDuplicateIcon
-            className="ml-1.5 text-xl font-normal text-sky-600 h-5 w-5 cursor-pointer"
+            className="ml-1.5 text-xl font-normal text-white hover:text-emerald-300 h-5 w-5 cursor-pointer transition-colors duration-300"
             aria-hidden="true"
           />
         </CopyToClipboard>

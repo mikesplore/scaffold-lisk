@@ -59,7 +59,7 @@ export const Footer = () => {
                   <div className="text-xs text-white/60">Waste Collected</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-taka-accent-400">₦45.7M</div>
+                  <div className="text-2xl font-bold text-taka-accent-400">$45.7M</div>
                   <div className="text-xs text-white/60">Tokens Earned</div>
                 </div>
               </div>
