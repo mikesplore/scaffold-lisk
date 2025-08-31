@@ -2,6 +2,14 @@ import { useRef, useState } from "react";
 import { NetworkOptions } from "./NetworkOptions";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { getAddress } from "viem";
+
+// Create a wrapper component to fix TypeScript issues with CopyToClipboard
+// @ts-ignore - Ignore the type issues with CopyToClipboard
+const CopyToClipboardWrapper = CopyToClipboard as React.FC<{
+  text: string;
+  onCopy: () => void;
+  children: React.ReactNode;
+}>;
 import { Address, useDisconnect } from "wagmi";
 import {
   ArrowLeftOnRectangleIcon,
@@ -47,14 +55,16 @@ export const AddressInfoDropdown = ({
   return (
     <>
       <details ref={dropdownRef} className="dropdown dropdown-end leading-3">
-        <summary tabIndex={0} className="btn bg-base-100 btn-md shadow-md dropdown-toggle gap-0 !h-auto flex-nowrap">
-          <div className="hidden lg:flex w-5">
-            <BlockieAvatar address={checkSumAddress} size={30} ensImage={ensAvatar} />
+        <summary tabIndex={0} className="btn bg-base-100 btn-sm shadow-md dropdown-toggle gap-0 !h-auto flex-nowrap">
+          <div className="flex items-center">
+            <div className="hidden sm:flex w-5 mr-1">
+              <BlockieAvatar address={checkSumAddress} size={20} ensImage={ensAvatar} />
+            </div>
+            <span className="text-sm">
+              {isENS(displayName) ? displayName : checkSumAddress?.slice(0, 6) + "..." + checkSumAddress?.slice(-4)}
+            </span>
+            <ChevronDownIcon className="h-4 w-4 ml-1" />
           </div>
-          <span className="ml-2 mr-1">
-            {isENS(displayName) ? displayName : checkSumAddress?.slice(0, 6) + "..." + checkSumAddress?.slice(-4)}
-          </span>
-          <ChevronDownIcon className="h-6 w-4 ml-2 sm:ml-0" />
         </summary>
         <ul
           tabIndex={0}
@@ -71,7 +81,7 @@ export const AddressInfoDropdown = ({
                 <span className=" whitespace-nowrap">Copy address</span>
               </div>
             ) : (
-              <CopyToClipboard
+              <CopyToClipboardWrapper
                 text={checkSumAddress}
                 onCopy={() => {
                   setAddressCopied(true);
@@ -87,7 +97,7 @@ export const AddressInfoDropdown = ({
                   />
                   <span className=" whitespace-nowrap">Copy address</span>
                 </div>
-              </CopyToClipboard>
+              </CopyToClipboardWrapper>
             )}
           </li>
           <li className={selectingNetwork ? "hidden" : ""}>

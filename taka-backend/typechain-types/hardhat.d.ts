@@ -14,14 +14,6 @@ import * as Contracts from ".";
 declare module "hardhat/types/runtime" {
   interface HardhatEthersHelpers extends HardhatEthersHelpersBase {
     getContractFactory(
-      name: "Ownable",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Ownable__factory>;
-    getContractFactory(
-      name: "Pausable",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Pausable__factory>;
-    getContractFactory(
       name: "ERC20",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ERC20__factory>;
@@ -38,22 +30,6 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.BuyMeACoffee__factory>;
     getContractFactory(
-      name: "TakaCommunity",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.TakaCommunity__factory>;
-    getContractFactory(
-      name: "TakaInvestment",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.TakaInvestment__factory>;
-    getContractFactory(
-      name: "TakaToken",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.TakaToken__factory>;
-    getContractFactory(
-      name: "TrashCollection",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.TrashCollection__factory>;
-    getContractFactory(
       name: "VNDToken",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.VNDToken__factory>;
@@ -63,16 +39,6 @@ declare module "hardhat/types/runtime" {
     ): Promise<Contracts.YourContract__factory>;
 
     getContractAt(
-      name: "Ownable",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.Ownable>;
-    getContractAt(
-      name: "Pausable",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.Pausable>;
-    getContractAt(
       name: "ERC20",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -92,26 +58,6 @@ declare module "hardhat/types/runtime" {
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.BuyMeACoffee>;
-    getContractAt(
-      name: "TakaCommunity",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.TakaCommunity>;
-    getContractAt(
-      name: "TakaInvestment",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.TakaInvestment>;
-    getContractAt(
-      name: "TakaToken",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.TakaToken>;
-    getContractAt(
-      name: "TrashCollection",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.TrashCollection>;
     getContractAt(
       name: "VNDToken",
       address: string | ethers.Addressable,
@@ -124,14 +70,6 @@ declare module "hardhat/types/runtime" {
     ): Promise<Contracts.YourContract>;
 
     deployContract(
-      name: "Ownable",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Ownable>;
-    deployContract(
-      name: "Pausable",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Pausable>;
-    deployContract(
       name: "ERC20",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.ERC20>;
@@ -147,22 +85,6 @@ declare module "hardhat/types/runtime" {
       name: "BuyMeACoffee",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.BuyMeACoffee>;
-    deployContract(
-      name: "TakaCommunity",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.TakaCommunity>;
-    deployContract(
-      name: "TakaInvestment",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.TakaInvestment>;
-    deployContract(
-      name: "TakaToken",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.TakaToken>;
-    deployContract(
-      name: "TrashCollection",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.TrashCollection>;
     deployContract(
       name: "VNDToken",
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -173,16 +95,6 @@ declare module "hardhat/types/runtime" {
     ): Promise<Contracts.YourContract>;
 
     deployContract(
-      name: "Ownable",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Ownable>;
-    deployContract(
-      name: "Pausable",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Pausable>;
-    deployContract(
       name: "ERC20",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -202,26 +114,6 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.BuyMeACoffee>;
-    deployContract(
-      name: "TakaCommunity",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.TakaCommunity>;
-    deployContract(
-      name: "TakaInvestment",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.TakaInvestment>;
-    deployContract(
-      name: "TakaToken",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.TakaToken>;
-    deployContract(
-      name: "TrashCollection",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.TrashCollection>;
     deployContract(
       name: "VNDToken",
       args: any[],

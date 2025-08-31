@@ -2,9 +2,5 @@
 /* tslint:disable */
 /* eslint-disable */
 export { BuyMeACoffee__factory } from "./BuyMeACoffee__factory";
-export { TakaCommunity__factory } from "./TakaCommunity__factory";
-export { TakaInvestment__factory } from "./TakaInvestment__factory";
-export { TakaToken__factory } from "./TakaToken__factory";
-export { TrashCollection__factory } from "./TrashCollection__factory";
 export { VNDToken__factory } from "./VNDToken__factory";
 export { YourContract__factory } from "./YourContract__factory";

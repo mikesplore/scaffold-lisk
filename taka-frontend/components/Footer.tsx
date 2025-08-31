@@ -75,17 +75,17 @@ export const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/stations" className="text-white/70 hover:text-taka-primary-400 transition-colors">
+                  <Link href="/stations" className="text-white/70">
                     Collection Stations
                   </Link>
                 </li>
                 <li>
-                  <Link href="/marketplace" className="text-white/70 hover:text-taka-primary-400 transition-colors">
+                  <Link href="/marketplace" className="text-white">
                     Marketplace
                   </Link>
                 </li>
                 <li>
-                  <Link href="/community" className="text-white/70 hover:text-taka-primary-400 transition-colors">
+                  <Link href="/community" className="text-white">
                     Community
                   </Link>
                 </li>

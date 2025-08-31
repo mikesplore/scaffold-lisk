@@ -1,6 +1,14 @@
 import { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { TransactionReceipt } from "viem";
+
+// Create a wrapper component to fix TypeScript issues with CopyToClipboard
+// @ts-ignore - Ignore the type issues with CopyToClipboard
+const CopyToClipboardWrapper = CopyToClipboard as React.FC<{
+  text: string;
+  onCopy: () => void;
+  children: React.ReactNode;
+}>;
 import { CheckCircleIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
 import { displayTxResult } from "~~/app/debug/_components/contract";
 
@@ -18,7 +26,7 @@ export const TxReceipt = (
             aria-hidden="true"
           />
         ) : (
-          <CopyToClipboard
+          <CopyToClipboardWrapper
             text={displayTxResult(txResult) as string}
             onCopy={() => {
               setTxResultCopied(true);
@@ -31,7 +39,7 @@ export const TxReceipt = (
               className="ml-1.5 text-xl font-normal text-sky-600 h-5 w-5 cursor-pointer"
               aria-hidden="true"
             />
-          </CopyToClipboard>
+          </CopyToClipboardWrapper>
         )}
       </div>
       <div className="flex-wrap collapse collapse-arrow">

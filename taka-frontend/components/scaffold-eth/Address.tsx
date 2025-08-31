@@ -116,20 +116,25 @@ export const Address = ({ address, disableAddressLink, format, size = "base" }: 
           aria-hidden="true"
         />
       ) : (
-        <CopyToClipboard
-          text={checkSumAddress}
-          onCopy={() => {
-            setAddressCopied(true);
-            setTimeout(() => {
-              setAddressCopied(false);
-            }, 800);
+        <button
+          type="button"
+          className="ml-1.5 p-0 bg-transparent border-none"
+          onClick={() => {
+            if (checkSumAddress) {
+              navigator.clipboard.writeText(checkSumAddress);
+              setAddressCopied(true);
+              setTimeout(() => {
+                setAddressCopied(false);
+              }, 800);
+            }
           }}
+          aria-label="Copy address"
         >
           <DocumentDuplicateIcon
-            className="ml-1.5 text-xl font-normal text-white hover:text-emerald-300 h-5 w-5 cursor-pointer transition-colors duration-300"
+            className="text-xl font-normal text-white hover:text-emerald-300 h-5 w-5 cursor-pointer transition-colors duration-300"
             aria-hidden="true"
           />
-        </CopyToClipboard>
+        </button>
       )}
     </div>
   );

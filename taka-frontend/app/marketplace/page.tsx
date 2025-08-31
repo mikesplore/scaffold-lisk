@@ -272,7 +272,6 @@ const MarketplacePage: NextPage = () => {
               icon={<ArrowPathIcon className="h-6 w-6" />}
               onClick={() => console.log("Investment info")}
               variant="accent"
-              size="sm"
             />
           </div>
         </div>

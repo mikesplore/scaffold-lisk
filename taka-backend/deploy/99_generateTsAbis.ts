@@ -76,24 +76,40 @@ function getInheritedFunctions(sources: Record<string, any>, contractName: strin
 }
 
 function getContractDataFromDeployments() {
-  if (!fs.existsSync(DEPLOYMENTS_DIR)) {
-    throw Error("At least one other deployment script should exist to generate an actual contract.");
-  }
-  const output = {} as Record<string, any>;
-  for (const chainName of getDirectories(DEPLOYMENTS_DIR)) {
-    const chainId = fs.readFileSync(`${DEPLOYMENTS_DIR}/${chainName}/.chainId`).toString();
-    const contracts = {} as Record<string, any>;
-    for (const contractName of getContractNames(`${DEPLOYMENTS_DIR}/${chainName}`)) {
-      const { abi, address, metadata } = JSON.parse(
-        fs.readFileSync(`${DEPLOYMENTS_DIR}/${chainName}/${contractName}.json`).toString(),
-      );
-      const inheritedFunctions = getInheritedFunctions(JSON.parse(metadata).sources, contractName);
-      contracts[contractName] = { address, abi, inheritedFunctions };
-    }
-    output[chainId] = contracts;
-  }
-  return output;
-}
+   // Check if deployments directory exists
+   if (!fs.existsSync(DEPLOYMENTS_DIR)) {
+     console.log("⚠️  No deployments directory found. Skipping TypeScript ABI generation for this network.");
+     console.log("   This is normal for hardhat network where deployments are not saved to disk by default.");
+     return {};
+   }
+
+   // Check if there are any deployment directories
+   const deploymentDirs = getDirectories(DEPLOYMENTS_DIR);
+   if (deploymentDirs.length === 0) {
+     console.log("⚠️  No deployment directories found. Skipping TypeScript ABI generation.");
+     return {};
+   }
+
+   const output = {} as Record<string, any>;
+   for (const chainName of deploymentDirs) {
+     try {
+       const chainId = fs.readFileSync(`${DEPLOYMENTS_DIR}/${chainName}/.chainId`).toString();
+       const contracts = {} as Record<string, any>;
+       for (const contractName of getContractNames(`${DEPLOYMENTS_DIR}/${chainName}`)) {
+         const { abi, address, metadata } = JSON.parse(
+           fs.readFileSync(`${DEPLOYMENTS_DIR}/${chainName}/${contractName}.json`).toString(),
+         );
+         const inheritedFunctions = getInheritedFunctions(JSON.parse(metadata).sources, contractName);
+         contracts[contractName] = { address, abi, inheritedFunctions };
+       }
+       output[chainId] = contracts;
+     } catch (error) {
+       console.log(`⚠️  Error processing deployment for chain ${chainName}:`, error instanceof Error ? error.message : String(error));
+       continue;
+     }
+   }
+   return output;
+ }
 
 /**
  * Generates the TypeScript contract definition file based on the json output of the contract deployment scripts
